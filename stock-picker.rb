@@ -1,3 +1,22 @@
+def weekday(integer)
+    case integer
+    when 0
+        "Sunday"
+    when 1
+        "Monday"
+    when 2
+        "Tuesday"
+    when 3
+        "Wednesday"
+    when 4
+        "Thursday"
+    when 5
+        "Friday"
+    when 6
+        "Saturday"
+    end
+end
+
 def stock_picker(stock_array)
     result = {}
     keys = []
@@ -11,32 +30,17 @@ def stock_picker(stock_array)
             end
         end
     end
-    puts result[keys.max]
-end
-
-def weekday(integer)
-    case integer
-    when 0
-        print "Sunday"
-    when 1
-        print "Monday"
-    when 2
-        print "Tuesday"
-    when 3
-        print "Wednesday"
-    when 4
-        print "Thursday"
-    when 5
-        print "Friday"
-    when 6
-        print "Saturday"
-    end
+    buy = result[keys.max].first
+    sell = result[keys.max].last
+    buy_day = weekday(buy)
+    sell_day = weekday(sell)
+    print "Best to buy on #{buy_day} and to sell on #{sell_day}."
 end
 
 stock_prices = []
 print "Enter stock prices in USD for "
 while stock_prices.length < 8
-    puts weekday(stock_prices.length)
+    puts "#{weekday(stock_prices.length)}: ".chomp
     price = gets.chomp.to_i
     stock_prices.push(price) if price.integer?
 end
